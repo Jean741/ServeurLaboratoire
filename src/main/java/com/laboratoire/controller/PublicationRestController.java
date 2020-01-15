@@ -61,9 +61,25 @@ public class PublicationRestController {
 	}
 
 	@PutMapping(value = "/publications/{id}")
-	public Publication updatePublication(@PathVariable Long id, @RequestBody Publication publication) {
-		publication.setId(id);
-		return publicationService.updatePub(publication);
+	public Publication updatePublication(@PathVariable Long id, @RequestBody PublicationObject publication) {
+		Publication p = new Publication();
+		p.setLien(publication.lien);
+		p.setId(id);
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println(p.getId());
+		p.setDateApparition(new Date());
+		p.setType(publication.type);
+		p.setSourcePdf(publication.sourcePdf);
+		List<Membre> auteurs = new ArrayList<Membre>();
+		publication.auteurs.forEach(auteur -> {
+			auteurs.add(memberService.findMember(auteur.longValue()));
+		});
+		p.setAuteurs(auteurs);
+		System.out.println(publication.auteurs.size());
+		return publicationService.updatePub(p);
 	}
 
 	@DeleteMapping(value = "/publications/{id}")

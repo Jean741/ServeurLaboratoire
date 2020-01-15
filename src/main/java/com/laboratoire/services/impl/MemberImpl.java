@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.laboratoire.adds.UserObject;
 import com.laboratoire.entities.EnseignantChercheur;
 import com.laboratoire.entities.Etudiant;
 import com.laboratoire.entities.Membre;
@@ -15,22 +16,21 @@ import com.laboratoire.repository.EtudiantRepository;
 import com.laboratoire.repository.MemberRepository;
 import com.laboratoire.repository.RoleRepository;
 import com.laboratoire.services.IMemberService;
-import com.laboratoire.services.IRoleService;
 
 @Service
 public class MemberImpl implements IMemberService {
 	@Autowired
 	MemberRepository memberRepository;
-	
+
 	@Autowired
 	EtudiantRepository etudiantRepository;
 	@Autowired
 	EnseignantChercheurRepository enseignantChercheurRepository;
 	@Autowired
 	RoleRepository roleRepository;
-	
+
 	public Membre addMember(Membre m) {
-		List<Role> roles= new ArrayList<Role>();
+		List<Role> roles = new ArrayList<Role>();
 		roles.add(roleRepository.findByRoleName("user"));
 		m.setRoles(roles);
 		memberRepository.save(m);
@@ -86,5 +86,24 @@ public class MemberImpl implements IMemberService {
 	@Override
 	public List<EnseignantChercheur> getAllEnseigants() {
 		return enseignantChercheurRepository.findAll();
+	}
+
+	@Override
+	public Integer connect(UserObject user) {
+		if (memberRepository.findByCin(user.cin) != null) {
+
+			Membre membre = memberRepository.findByCin(user.cin);
+			if (membre.getPassword().equals(user.password)) {
+				return membre.getId().intValue();
+				 
+			} else {
+				return null;
+
+			}
+		} else {
+			return -1;
+
+		}
+
 	}
 }

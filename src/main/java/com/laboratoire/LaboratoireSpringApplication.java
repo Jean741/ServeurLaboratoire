@@ -55,9 +55,9 @@ public class LaboratoireSpringApplication implements CommandLineRunner {
 
 		Role r1 = new Role("admin");
 		Role r2 = new Role("user");
-		//roleRepository.save(r1);
-	//	roleRepository.save(r2);
-
+	/*	roleRepository.save(r1);
+		roleRepository.save(r2);
+*/
 		List<Role> lst1 = new ArrayList<Role>();
 		lst1.add(r1);
 
@@ -66,15 +66,15 @@ public class LaboratoireSpringApplication implements CommandLineRunner {
 
 		// Ajout d'un membre enseignant chercheur ayant le role admin
 
-		EnseignantChercheur ens1 = new EnseignantChercheur("01752354", "Jmaiel", "Mohamed", new Date(), "", null,
+		EnseignantChercheur ens1 = new EnseignantChercheur("admin", "Jmaiel", "Mohamed", new Date(), "", null,
 				"jmaiel@enis.tn", "0000");
 		ens1.setRoles(lst1);
-	//	enseignantChercheurRepository.save(ens1);
+		//enseignantChercheurRepository.save(ens1);
 
 		// Ajout d'un membre enseignant chercheur ayant le role user
-		EnseignantChercheur ens2 = new EnseignantChercheur("0175354", "mariam", "lahami", new Date(), "", null,
-				"lahami@enis.tn", "2222");
-		//ens1.setRoles(lst2);
+		EnseignantChercheur ens2 = new EnseignantChercheur("jean", "mariam", "lahami", new Date(), "", null,
+				"lahami@enis.tn", "123");
+		ens1.setRoles(lst2);
 	//	enseignantChercheurRepository.save(ens2);
 
 		// ajout de 3 étudiants 1 mastère et 2 thése ayant le role user
@@ -91,11 +91,11 @@ public class LaboratoireSpringApplication implements CommandLineRunner {
 		etd1.setEncadrant(ens1);
 		// ens2 est l'encadrant de etd2
 		etd2.setEncadrant(ens2);
-
-	/*	etudiantRepository.save(etd1);
+/*
+		etudiantRepository.save(etd1);
 		etudiantRepository.save(etd2);
-		etudiantRepository.save(etd3);*/
-
+		etudiantRepository.save(etd3);
+*/
 		// ajout d'une publication dont les auteurs sont etd1 ens1 et ens2
 		Publication pubs = new Publication("poster", new Date(), "lien", "pdf");
 

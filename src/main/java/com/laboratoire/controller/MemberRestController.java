@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.laboratoire.adds.UserObject;
 import com.laboratoire.entities.EnseignantChercheur;
 import com.laboratoire.entities.Etudiant;
 import com.laboratoire.entities.Membre;
@@ -26,6 +27,9 @@ public class MemberRestController {
 	@Autowired
 	
 
+	
+	
+	
 	@GetMapping("/membres")
 	public List<Membre> findMembres() {
 
@@ -84,6 +88,12 @@ public class MemberRestController {
 	public Membre updateMembre(@PathVariable Long id, @RequestBody EnseignantChercheur p) {
 		p.setId(id);
 		return memberService.updateMember(p);
+	}
+	
+	@PostMapping("/connect")
+	public Integer connect(@RequestBody UserObject user) {
+
+		return memberService.connect(user);
 	}
 
 }

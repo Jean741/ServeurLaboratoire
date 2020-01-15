@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.laboratoire.entities.Membre;
-import com.laboratoire.entities.Publication;
 import com.laboratoire.entities.Role;
 import com.laboratoire.services.IRoleService;
 

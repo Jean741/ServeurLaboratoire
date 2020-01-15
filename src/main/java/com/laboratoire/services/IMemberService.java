@@ -2,6 +2,7 @@ package com.laboratoire.services;
 
 import java.util.List;
 
+import com.laboratoire.adds.UserObject;
 import com.laboratoire.entities.EnseignantChercheur;
 import com.laboratoire.entities.Etudiant;
 import com.laboratoire.entities.Membre;
@@ -37,5 +38,7 @@ public interface IMemberService {
 
 	public List<EnseignantChercheur> findByEtablissement(String etablissement);
 	// other ...
+
+	public Integer connect(UserObject user);
 
 }
